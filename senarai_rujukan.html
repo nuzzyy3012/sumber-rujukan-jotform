@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senarai Rujukan</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Konfigurasi Tema Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Plus Jakarta Sans"', 'sans-serif'],
+                        'display': ['"Playfair Display"', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background: linear-gradient(180deg, #bae6fd 0%, #e0f2fe 45%, #f0f9ff 100%);
+            background-attachment: fixed;
+            color: #1e293b;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animasi Awan Bergerak di Latar Belakang */
+        @keyframes driftRight {
+            0% { transform: translateX(-25vw); }
+            100% { transform: translateX(120vw); }
+        }
+
+        .cloud-layer {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            fill: #ffffff;
+            will-change: transform;
+            animation: driftRight linear infinite;
+        }
+
+        .cloud-1 {
+            top: 7%;
+            width: 220px;
+            opacity: 0.78;
+            animation-duration: 42s;
+            animation-delay: -5s;
+        }
+
+        .cloud-2 {
+            top: 22%;
+            width: 150px;
+            opacity: 0.6;
+            animation-duration: 58s;
+            animation-delay: -26s;
+        }
+
+        .cloud-3 {
+            top: 44%;
+            width: 260px;
+            opacity: 0.52;
+            animation-duration: 70s;
+            animation-delay: -18s;
+        }
+
+        .cloud-4 {
+            top: 68%;
+            width: 185px;
+            opacity: 0.65;
+            animation-duration: 50s;
+            animation-delay: -38s;
+        }
+
+        .cloud-5 {
+            top: 84%;
+            width: 230px;
+            opacity: 0.48;
+            animation-duration: 64s;
+            animation-delay: -10s;
+        }
+
+        /* Kad Kaca Lembut (Soft Glassmorphism) */
+        .soft-card {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(186, 230, 253, 0.9);
+            box-shadow: 0 8px 24px -6px rgba(14, 116, 144, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .soft-card:hover {
+            box-shadow: 0 12px 28px -6px rgba(14, 116, 144, 0.14);
+            border-color: rgba(125, 211, 252, 1);
+        }
+
+        /* Inden Tergantung Gaya APA */
+        .apa-hanging-indent {
+            padding-left: 1.75rem;
+            text-indent: -1.75rem;
+        }
+
+        /* Bar Skrol Tersuai */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e0f2fe; }
+        ::-webkit-scrollbar-thumb { background: #7dd3fc; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+
+        /* Gaya Cetakan (Print / PDF) */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: #ffffff !important; color: #000000 !important; }
+            .soft-card { 
+                box-shadow: none !important; 
+                border: 1px solid #cbd5e1 !important; 
+                background: #ffffff !important; 
+                color: #000000 !important;
+                backdrop-filter: none !important;
+                page-break-inside: avoid;
+            }
+            a { text-decoration: underline !important; color: #000000 !important; }
+        }
+    </style>
+</head>
+<body class="relative antialiased" id="app-body">
+
+    <!-- Latar Belakang Awan Bergerak -->
+    <div class="cloud-layer no-print" aria-hidden="true">
+        <svg class="cloud cloud-1" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40 70 H165 C182 70 194 58 194 43 C194 29 183 18 169 17 C163 6 150 0 135 0 C118 0 103 10 97 24 C91 20 84 18 76 18 C57 18 42 32 40 50 C28 51 18 59 18 68 C18 69 28 70 40 70 Z"/>
+        </svg>
+        <svg class="cloud cloud-2" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+            <path d="M35 72 H168 C184 72 195 61 195 47 C195 34 185 24 172 22 C166 9 152 2 136 2 C119 2 104 12 98 26 C92 22 85 20 77 20 C59 20 44 33 41 51 C26 52 15 60 15 70 C15 71 24 72 35 72 Z"/>
+        </svg>
+        <svg class="cloud cloud-3" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+            <path d="M42 70 H164 C180 70 192 59 192 44 C192 31 182 20 168 18 C161 7 148 0 133 0 C116 0 101 10 95 25 C89 21 82 19 74 19 C56 19 41 33 38 51 C25 52 16 60 16 69 C16 70 28 70 42 70 Z"/>
+        </svg>
+        <svg class="cloud cloud-4" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+            <path d="M38 71 H166 C182 71 194 60 194 46 C194 33 184 23 171 21 C165 8 151 1 135 1 C118 1 103 11 97 25 C91 21 84 19 76 19 C58 19 43 32 40 50 C25 51 14 59 14 69 C14 70 24 71 38 71 Z"/>
+        </svg>
+        <svg class="cloud cloud-5" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40 70 H165 C182 70 194 58 194 43 C194 29 183 18 169 17 C163 6 150 0 135 0 C118 0 103 10 97 24 C91 20 84 18 76 18 C57 18 42 32 40 50 C28 51 18 59 18 68 C18 69 28 70 40 70 Z"/>
+        </svg>
+    </div>
+
+    <!-- Pengepala Navigasi -->
+    <header class="relative z-30 bg-white/80 backdrop-blur-md border-b border-sky-200/80 px-4 py-3.5 shadow-sm no-print">
+        <div class="container mx-auto max-w-4xl flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-11 h-11 bg-gradient-to-br from-sky-400 to-blue-500 rounded-xl flex items-center justify-center text-white text-xl shadow-sm shrink-0">
+                    <i class="fas fa-book-bookmark"></i>
+                </div>
+                <div>
+                    <h1 class="font-display font-bold text-lg md:text-xl text-sky-950 tracking-wide">Senarai Rujukan</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Kandungan Utama -->
+    <main class="container mx-auto px-4 py-8 relative z-10 max-w-4xl">
+
+        <!-- Sepanduk Tajuk -->
+        <div class="soft-card rounded-2xl text-center p-6 sm:p-8 mb-6 bg-gradient-to-br from-white/90 via-sky-50/85 to-blue-50/85">
+            <h2 class="font-display font-bold text-3xl sm:text-4xl text-sky-950 tracking-wide">
+                Senarai Rujukan
+            </h2>
+        </div>
+
+        <!-- Bar Carian & Statistik -->
+        <div class="soft-card rounded-2xl p-4 mb-6 no-print">
+            <div class="flex flex-col md:flex-row gap-3 justify-between items-center">
+                <!-- Input Carian -->
+                <div class="relative w-full md:flex-1">
+                    <input type="text" id="ref-search-input" oninput="filterReferences()" 
+                           placeholder="Cari pengarang, tajuk, penerbit, atau tahun..." 
+                           aria-label="Cari rujukan"
+                           class="w-full bg-white/90 border border-sky-200 rounded-xl text-slate-800 placeholder-slate-400 text-sm sm:text-base px-4 py-2.5 pl-10 pr-10 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-400 transition-all">
+                    <i class="fas fa-search absolute left-3.5 top-3.5 text-sky-500"></i>
+                    <button id="clear-search-btn" onclick="clearSearch()" 
+                            class="hidden absolute right-3 top-2.5 text-slate-400 hover:text-rose-500 cursor-pointer p-1" 
+                            title="Padam carian">
+                        <i class="fas fa-times-circle text-base"></i>
+                    </button>
+                </div>
+
+                <!-- Lencana Jumlah Dokumen -->
+                <div class="text-xs sm:text-sm font-semibold text-sky-800 bg-sky-100/90 border border-sky-200 rounded-xl px-4 py-2.5 w-full md:w-auto text-center shrink-0">
+                    Jumlah: <span id="ref-count-span" class="text-sky-950 font-bold">0 Dokumen</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bekas Senarai Rujukan -->
+        <div id="references-container" class="space-y-4">
+            <!-- Diisi secara dinamik oleh JavaScript -->
+        </div>
+
+    </main>
+
+    <script>
+        /* =========================================================
+           ENJIN BUNYI LEMBUT (WEB AUDIO API)
+           ========================================================= */
+        class SoftSoundEngine {
+            constructor() {
+                this.ctx = null;
+                this.enabled = true;
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContext) {
+                        this.ctx = new AudioContext();
+                    }
+                }
+                if (this.ctx && this.ctx.state === 'suspended') {
+                    this.ctx.resume();
+                }
+            }
+
+            playTone(freq, type = 'sine', duration = 0.1, gainVal = 0.05) {
+                if (!this.enabled) return;
+                try {
+                    this.init();
+                    if (!this.ctx) return;
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = type;
+                    osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+                    gain.gain.setValueAtTime(gainVal, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + duration);
+                } catch (e) {
+                    console.warn('Ralat main balik audio:', e);
+                }
+            }
+
+            playClick() {
+                this.playTone(540, 'sine', 0.07, 0.04);
+            }
+        }
+
+        const soundEngine = new SoftSoundEngine();
+
+        /* =========================================================
+           PANGKALAN DATA RUJUKAN UTAMA (7 ITEM)
+           ========================================================= */
+        const referencesDatabase = [
+            {
+                id: 'ref-1',
+                author: 'Kementerian Pendidikan Malaysia.',
+                year: '2017',
+                title: 'Dokumen standard kurikulum dan pentaksiran (DSKP) Sains Tahun 1 KSSR Semakan 2017',
+                edition: '',
+                publisher: 'Bahagian Pembangunan Kurikulum. Sumber DSKP.',
+                url: ''
+            },
+            {
+                id: 'ref-2',
+                author: 'Kementerian Pendidikan Malaysia.',
+                year: '2024',
+                title: 'Dokumen penjajaran kurikulum standard sekolah rendah (Semakan 2017) Edisi 3: Sains Tahap 1',
+                edition: '',
+                publisher: 'Bahagian Pembangunan Kurikulum. Surat siaran pelaksanaan Ministry of Education Malaysia.',
+                url: ''
+            },
+            {
+                id: 'ref-3',
+                author: 'Kementerian Pendidikan Malaysia.',
+                year: 'n.d.',
+                title: 'Buku teks Sains Tahun 1 KSSR Semakan 2017',
+                edition: '',
+                publisher: '',
+                url: ''
+            },
+            {
+                id: 'ref-4',
+                author: 'Lubis, M. K., Nazara, S., & Septiadevana, R.',
+                year: '2024',
+                title: 'The effect of sensory learning media on the learning motivation of second grade elementary school students',
+                edition: '',
+                publisher: 'Journal of Didactic Studies, 2(1).',
+                url: ''
+            },
+            {
+                id: 'ref-5',
+                author: 'Putri, S. K., Thohir, A., & Utama, C.',
+                year: '2024',
+                title: 'Development of PAKLEK media on the five senses material to strengthen student learning motivation in elementary school',
+                edition: '',
+                publisher: 'Indonesian Journal of Primary Education, 8(1).',
+                url: ''
+            },
+            {
+                id: 'ref-6',
+                author: 'Rosita, D., Dewanti, S. S., & Ibrahim, I.',
+                year: '2025',
+                title: "The impact of augmented reality-based learning media on primary students' retention of human sensory system concepts",
+                edition: '',
+                publisher: 'Journal of Integrated Elementary Education, 5(2), 407–420.',
+                url: 'https://doi.org/10.21580/jieed.v5i2.25276'
+            },
+            {
+                id: 'ref-7',
+                author: 'Lembaran PBD Sains KSSR Tahun 1.',
+                year: 'n.d.',
+                title: 'Contoh bahan PBD',
+                edition: '',
+                publisher: '',
+                url: ''
+            }
+        ];
+
+        /* =========================================================
+           FUNGSI UTILITI CARIAN
+           ========================================================= */
+        function clearSearch() {
+            const input = document.getElementById('ref-search-input');
+            input.value = '';
+            soundEngine.playClick();
+            renderReferences();
+            input.focus();
+        }
+
+        /* =========================================================
+           PAPARAN & PENAPISAN SENARAI RUJUKAN
+           ========================================================= */
+        function renderReferences() {
+            const container = document.getElementById('references-container');
+            const searchInputEl = document.getElementById('ref-search-input');
+            const clearBtn = document.getElementById('clear-search-btn');
+            const searchQuery = searchInputEl.value.trim().toLowerCase();
+
+            // Papar atau sembunyikan butang padam carian
+            if (searchQuery.length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+
+            container.innerHTML = '';
+
+            // Tapis mengikut pengarang, tajuk, tahun, atau penerbit
+            const filtered = referencesDatabase.filter(item => {
+                return (
+                    item.author.toLowerCase().includes(searchQuery) ||
+                    item.title.toLowerCase().includes(searchQuery) ||
+                    item.year.toLowerCase().includes(searchQuery) ||
+                    item.publisher.toLowerCase().includes(searchQuery)
+                );
+            });
+
+            // Susun mengikut abjad nama pengarang (kemudian tahun jika sama)
+            filtered.sort((a, b) => {
+                const authorCmp = a.author.localeCompare(b.author);
+                if (authorCmp !== 0) return authorCmp;
+                return a.year.localeCompare(b.year);
+            });
+
+            document.getElementById('ref-count-span').textContent = `${filtered.length} Dokumen`;
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="soft-card rounded-2xl text-center py-10 px-4">
+                        <i class="fas fa-cloud text-sky-300 text-4xl mb-3"></i>
+                        <h4 class="font-bold text-base text-slate-700">Tiada Rujukan Dijumpai</h4>
+                        <p class="text-sm text-slate-500 mt-1">Sila cuba kata kunci carian yang lain.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach((ref, idx) => {
+                const card = document.createElement('article');
+                card.className = 'soft-card rounded-2xl p-5';
+                
+                const cleanTitle = ref.title.replace(/\.+$/, '');
+                const editionStr = ref.edition ? ` (${ref.edition})` : '';
+                const publisherStr = ref.publisher ? ` ${ref.publisher}` : '';
+                const urlHtml = ref.url 
+                    ? ` <a href="${ref.url}" target="_blank" rel="noopener noreferrer" onclick="soundEngine.playClick()" class="text-sky-600 hover:text-sky-800 underline break-all transition-colors">${ref.url}</a>` 
+                    : '';
+
+                card.innerHTML = `
+                    <div class="flex items-start gap-3">
+                        <span class="font-bold text-sky-600 bg-sky-50 border border-sky-200 rounded-lg text-xs sm:text-sm shrink-0 w-7 h-7 flex items-center justify-center mt-0.5">${idx + 1}</span>
+                        <div class="text-sm md:text-base leading-relaxed text-slate-700 select-text flex-1 apa-hanging-indent">
+                            <strong class="text-slate-900">${ref.author}</strong> (${ref.year}). <span class="italic text-sky-900">${cleanTitle}</span>${editionStr}.${publisherStr}${urlHtml}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterReferences() {
+            renderReferences();
+        }
+
+        /* INISIALISASI APABILA HALAMAN DIMUATKAN */
+        window.onload = function() {
+            renderReferences();
+        };
+    </script>
+</body>
+</html>
